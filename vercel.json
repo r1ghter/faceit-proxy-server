@@ -1,0 +1,14 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "api/faceit.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "api/faceit-history.js",
+        "use": "@vercel/node"
+      }
+    ]
+  }
+  
