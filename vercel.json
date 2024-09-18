@@ -1,14 +1,11 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "api/faceit.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "api/faceit-history.js",
-        "use": "@vercel/node"
-      }
+      { "src": "api/**/*.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/api/faceit", "dest": "/api/faceit.js" },
+      { "src": "/api/faceit-history", "dest": "/api/faceit-history.js" }
     ]
   }
   

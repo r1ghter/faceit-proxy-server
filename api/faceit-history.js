@@ -1,24 +1,18 @@
 import fetch from 'node-fetch';
 
-const FACEIT_API_KEY = process.env.FACEIT_API_KEY;
-
 export default async function handler(req, res) {
-    const { playerId } = req.query;
+  const { playerId } = req.query;
+  const apiKey = 'e622f31f-c507-4a5c-9bb2-f396df2c62a1'; // Tvůj API klíč
 
-    try {
-        const faceitResponse = await fetch(`https://open.faceit.com/data/v4/players/${playerId}/history?game=csgo&offset=0&limit=20`, {
-            headers: {
-                'Authorization': `Bearer ${FACEIT_API_KEY}`
-            }
-        });
-
-        if (!faceitResponse.ok) {
-            throw new Error(`Error: ${faceitResponse.statusText}`);
-        }
-
-        const data = await faceitResponse.json();
-        res.status(200).json(data);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+  try {
+    const response = await fetch(`https://open.faceit.com/data/v4/players/${playerId}/history?game=csgo&offset=0&limit=20`, {
+      headers: {
+        'Authorization': `Bearer ${apiKey}`
+      }
+    });
+    const data = await response.json();
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching data' });
+  }
 }
